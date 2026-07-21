@@ -1,21 +1,33 @@
-import { AppBar, Toolbar, Typography, Box} from '@mui/material'
+import { AppBar, Toolbar, Typography,
+  Box, IconButton, useMediaQuery, useTheme
+} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 import UnderlineButton from './Button'
 
-function Navbar() {
+
+function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
+
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <AppBar position="static">
       <Toolbar>
-        {/* Titolo */}
+
+        {isMobile && (
+          <IconButton color="inherit" onClick={onOpenSidebar}>
+            <MenuIcon />
+          </IconButton>
+        )}
+
         <Typography variant="h6">
           Drivehub
         </Typography>
 
-        {/* Spazio che spinge i pulsanti a destra */}
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* Pulsanti di navigazione */}
-        <UnderlineButton label="Catalogo"></UnderlineButton>
-        <UnderlineButton label="Carello"></UnderlineButton>
+        <UnderlineButton label="Catalogo" />
+        <UnderlineButton label="Carrello" />
       </Toolbar>
     </AppBar>
   )
