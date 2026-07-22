@@ -1,6 +1,7 @@
 import Navbar from './Navbar/Navbar'
 import Sidebar from './Sidebar/Sidebar'
-import { Box, Typography } from '@mui/material'
+import CarCard from './Card'
+import { Box } from '@mui/material'
 import { useState } from 'react'
 
 function Drivehub() {
@@ -12,12 +13,17 @@ function Drivehub() {
         <Box sx={{ display: 'flex' }}>
         
         <Sidebar open={open} setOpen={setOpen} />
-
-            {/* Inserisco dopo il contenuto */}
-            <Box sx={{ flexGrow: 1, p: 3 }}>
-                <Typography variant="h4" sx={{ mb: 2 }}>Catalogo Auto</Typography>
-                <Typography>Contenuto del catalogo…</Typography>
-            </Box>
+        <Box sx={{ flexGrow: 1, p: 3 }}>
+            <CarCard
+                image="/bugattiChiron.jpg"
+                brand="Bugatti"
+                model="Chiron"
+                year={2019}
+                km={0}
+                fuel="Benzina"
+                price={3000000}
+            />
+        </Box>
       </Box>
     </>
   )
