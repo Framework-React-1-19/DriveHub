@@ -1,9 +1,9 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Pagination } from '@mui/material'
 import { useState } from 'react'
 
 import Navbar from './Navbar/Navbar'
 import Sidebar from './Sidebar/Sidebar'
-import CarCard from './Card'
+import CarCard from './CarCard'
 
 const cars = [
   {
@@ -15,7 +15,51 @@ const cars = [
     fuel: "Benzina",
     price: 3000000
   },
-  // Se vuoi altre auto, le aggiungi qui
+    {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
+    {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
+    {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
+    {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
+    {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
 ]
 
 function Drivehub() {
@@ -34,6 +78,11 @@ function Drivehub() {
               <CarCard key={i} {...car} />
             ))}
           </Grid>
+
+          {/* PAGINATION CENTRATA */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+            <Pagination count={10} color="primary" />
+          </Box>
         </Box>
       </Box>
     </>
