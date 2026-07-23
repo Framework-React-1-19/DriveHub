@@ -1,28 +1,39 @@
+import { Box, Grid } from '@mui/material'
+import { useState } from 'react'
+
 import Navbar from './Navbar/Navbar'
 import Sidebar from './Sidebar/Sidebar'
 import CarCard from './Card'
-import { Box } from '@mui/material'
-import { useState } from 'react'
+
+const cars = [
+  {
+    image: "/bugattiChiron.jpg",
+    brand: "Bugatti",
+    model: "Chiron",
+    year: 2019,
+    km: 0,
+    fuel: "Benzina",
+    price: 3000000
+  },
+  // Se vuoi altre auto, le aggiungi qui
+]
 
 function Drivehub() {
-    const [open, setOpen] = useState(false)
-    return (
-        <>
-        <Navbar onOpenSidebar={() => setOpen(true)} />
+  const [open, setOpen] = useState(false)
 
-        <Box sx={{ display: 'flex' }}>
-        
+  return (
+    <>
+      <Navbar onOpenSidebar={() => setOpen(true)} />
+
+      <Box sx={{ display: 'flex' }}>
         <Sidebar open={open} setOpen={setOpen} />
+
         <Box sx={{ flexGrow: 1, p: 3 }}>
-            <CarCard
-                image="/bugattiChiron.jpg"
-                brand="Bugatti"
-                model="Chiron"
-                year={2019}
-                km={0}
-                fuel="Benzina"
-                price={3000000}
-            />
+          <Grid container spacing={3}>
+            {cars.map((car, i) => (
+              <CarCard key={i} {...car} />
+            ))}
+          </Grid>
         </Box>
       </Box>
     </>
