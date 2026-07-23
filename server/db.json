@@ -1,0 +1,194 @@
+{
+  "cars": [
+    {
+      "id": "1",
+      "brand": "Hyundai",
+      "model": "Accent",
+      "year": 2021,
+      "price": 18500,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_1.jpg",
+      "description": "Berlina compatta dal design moderno e dai consumi contenuti, ideale per l'uso quotidiano."
+    },
+    {
+      "id": "2",
+      "brand": "Porsche",
+      "model": "Panamera Turbo",
+      "year": 2022,
+      "price": 165000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_2.jpg",
+      "description": "Ammiraglia sportiva a 4 porte capace di unire prestazioni da supercar al massimo comfort."
+    },
+    {
+      "id": "3",
+      "brand": "Chevrolet",
+      "model": "Camaro SS",
+      "year": 2021,
+      "price": 48000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_3.jpg",
+      "description": "Muscle car americana dal colore blu sgargiante e potente motore V8 sotto il cofano."
+    },
+    {
+      "id": "4",
+      "brand": "BMW",
+      "model": "M4 Coupé",
+      "year": 2020,
+      "price": 72000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_4.jpg",
+      "description": "Coupé ad altissime prestazioni con assetto sportivo e dinamica di guida impeccabile."
+    },
+    {
+      "id": "5",
+      "brand": "Tesla",
+      "model": "Roadster",
+      "year": 2024,
+      "price": 220000,
+      "fuelType": "Electric",
+      "imageUrl": "/auto_5.jpg",
+      "description": "Supercar 100% elettrica dal design aerodinamico e accelerazione fulminea."
+    },
+    {
+      "id": "6",
+      "brand": "Land Rover",
+      "model": "Range Rover Sport",
+      "year": 2022,
+      "price": 89000,
+      "fuelType": "Diesel",
+      "imageUrl": "/auto_6.jpg",
+      "description": "SUV di lusso imponente con trazione integrale avanzata e finiture di altissimo livello."
+    },
+    {
+      "id": "7",
+      "brand": "Ford",
+      "model": "Expedition",
+      "year": 2022,
+      "price": 62000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_7.jpg",
+      "description": "Grande SUV familiare pensato per affrontare lunghi viaggi e terreni impegnativi."
+    },
+    {
+      "id": "8",
+      "brand": "Ford",
+      "model": "Mustang GT",
+      "year": 2019,
+      "price": 42000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_8.jpg",
+      "description": "Iconica coupé americana personalizzata con componenti Steeda e look aggressivo."
+    },
+    {
+      "id": "9",
+      "brand": "Ferrari",
+      "model": "488 GTB",
+      "year": 2020,
+      "price": 230000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_9.jpg",
+      "description": "Supercar a motore centrale V8 biturbo, perfetta sintesi di aerodinamica e prestazioni estreme."
+    },
+    {
+      "id": "10",
+      "brand": "Audi",
+      "model": "RS6 Avant",
+      "year": 2022,
+      "price": 135000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_10.jpg",
+      "description": "Station wagon ad altissime prestazioni che combina versatilità familiare e anima da supercar."
+    },
+    {
+      "id": "11",
+      "brand": "Mercedes-AMG",
+      "model": "GT Coupé",
+      "year": 2021,
+      "price": 145000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_11.jpg",
+      "description": "Coupé sportiva dal cofano allungato e inconfondibile sound del V8 biturbo AMG."
+    },
+    {
+      "id": "12",
+      "brand": "Lamborghini",
+      "model": "Aventador S",
+      "year": 2021,
+      "price": 380000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_12.jpg",
+      "description": "Supercar con motore V12 aspirato, design affilato e prestazioni mozzafiato."
+    },
+    {
+      "id": "13",
+      "brand": "Koenigsegg",
+      "model": "Jesko",
+      "year": 2020,
+      "price": 3500000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_13.webp",
+      "description": "La vettura, erede della Agera RS, è pronta a frantumare molti record. Come ricordato durante la presentazione, questa vettura vuole raggiungere la barriera delle 300 miglia orarie, che per capirci meglio, sono la bellezza di 482.8 chilometri orari."
+    },
+    {
+      "id": "14",
+      "brand": "Ficsit",
+      "model": "Bonobo",
+      "year": 2026,
+      "price": 176000,
+      "fuelType": "Hybrid",
+      "imageUrl": "/auto_14.png",
+      "description": "L'auto aziendale ideale, dove l'eccellenza incontra la massima efficienza."
+    },
+    {
+      "id": "15",
+      "brand": "Bugatti",
+      "model": "Chiron",
+      "year": 2019,
+      "price": 3000000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_15.png",
+      "description": "Hypercar con motore W16 quad-turbo da 1500 CV, capace di prestazioni estreme e design iconico."
+    },
+    {
+      "id": "16",
+      "brand": "McLaren",
+      "model": "720S",
+      "year": 2021,
+      "price": 280000,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_16.png",
+      "description": "Supercar britannica con motore V8 biturbo da 720 CV, telaio in fibra di carbonio e design aerodinamico mozzafiato."
+    },
+    {
+      "id": "17",
+      "brand": "Fiat",
+      "model": "Panda",
+      "year": 2023,
+      "price": 14500,
+      "fuelType": "Hybrid",
+      "imageUrl": "/auto_17.png",
+      "description": "City car compatta e versatile, con motore ibrido benzina da 70 CV e consumi ridotti. Ideale per la guida urbana e perfetta per chi cerca praticità e affidabilità."
+    },
+    {
+      "id": "18",
+      "brand": "Lada",
+      "model": "2107",
+      "year": 1995,
+      "price": 4500,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_18.png",
+      "description": "Storica berlina sovietica dalle linee squadrate e meccanica essenziale. Robusta, spartana e simbolo dell’automobilismo dell’Est."
+    },
+    {
+      "id": "19",
+      "brand": "Mazda",
+      "model": "MX-5 NA",
+      "year": 1994,
+      "price": 18500,
+      "fuelType": "Petrol",
+      "imageUrl": "/auto_19.png",
+      "description": "Mazda MX‑5 NA prima serie, carrozzeria bianca con hard‑top nero lucido e fari pop‑up aperti. Roadster leggera e iconica, simbolo della filosofia 'Jinba Ittai' di Mazda, perfetta per chi ama la guida pura e retrò."
+    }
+  ]
+}
