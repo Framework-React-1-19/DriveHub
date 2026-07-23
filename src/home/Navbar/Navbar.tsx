@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography,
   Box, IconButton, useMediaQuery, useTheme
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import UnderlineButton from './Button'
 
 
@@ -13,6 +14,10 @@ function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
   return (
     <AppBar position="static">
       <Toolbar>
+        
+        {!isMobile && (
+          <DirectionsCarIcon sx={{ fontSize: 32, marginRight: 1 }} />
+        )}
 
         {isMobile && (
           <IconButton color="inherit" onClick={onOpenSidebar}>
