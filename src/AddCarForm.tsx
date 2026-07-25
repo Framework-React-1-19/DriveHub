@@ -11,17 +11,7 @@ import {
   CircularProgress
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-
-export interface Car {
-  id?: string;
-  brand: string;
-  model: string;
-  year: number;
-  price: number;
-  fuelType: 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid' | '';
-  imageUrl: string;
-  description: string;
-}
+import type { Car } from './types';
 
 interface AddCarFormProps {
   // Supporta sia funzioni sincrone che asincrone (Promise) da App.tsx

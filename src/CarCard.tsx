@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions, Box, Button, Typography, CardMedia } from '@mui/material'
 import { Link } from 'react-router-dom'
-import type { Car } from './AddCarForm'
+import type { Car } from './types';
 
 interface CarCardProps {
   car: Car

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid, Pagination } from "@mui/material";
-import type { Car } from "./AddCarForm";
+import type { Car } from './types';
 import CarCard from "./CarCard";
 
 interface CatalogoProps {
@@ -12,6 +12,13 @@ function Catalogo({ cars }: CatalogoProps) {
   const [pagina, setPagina] = useState(1);
   const autoPerPagina = 6;
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Usa 'auto' se vuoi lo scatto immediato anziché l'animazione fluida
+    });
+  }, [pagina]);
+
   // 2. Calcolo indici per estrarre solo le auto della pagina corrente
   const indiceUltimaAuto = pagina * autoPerPagina;
   const indicePrimaAuto = indiceUltimaAuto - autoPerPagina;
@@ -20,9 +27,9 @@ function Catalogo({ cars }: CatalogoProps) {
   // 3. Calcolo dinamico del numero di pagine in base a quante auto ci sono
   const totalePagine = Math.ceil(cars.length / autoPerPagina);
 
-  const gestisciCambioPagina = (_event: React.ChangeEvent<unknown>, valore: number) => {
-    setPagina(valore);
-  };
+  const gestisciCambioPagina = (_: unknown, valore: number) => {
+  setPagina(valore);
+};
 
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>

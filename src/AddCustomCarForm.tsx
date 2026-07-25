@@ -15,7 +15,7 @@ import {
   Chip,
   Grid
 } from '@mui/material';
-import type { Car } from './AddCarForm';
+import type { Car } from './types';
 
 export interface CustomCarModalProps {
   open: boolean;

@@ -3,8 +3,11 @@ import { Routes, Route } from "react-router-dom"
 import { Box, Divider, Typography } from "@mui/material"
 import Navbar from "./Navbar"
 import Sidebar from "./SideBar"
-import { AddCarForm, type Car } from "./AddCarForm"
+import { AddCarForm } from "./AddCarForm";
+import type { Car } from "./types";
 import Catalogo from "./Catalogo"
+import DetailsCar from "./DetailsCar"
+import Cart from "./Cart"
 
 function DriveHub() {
   const [open, setOpen] = useState(false)
@@ -57,6 +60,18 @@ function DriveHub() {
               </Box>
             </Box>
           }
+        />
+
+        {/* Pagina Carrello */}
+        <Route
+          path="/car/:id"
+          element={<DetailsCar cars={automobili} />}
+        />
+
+        {/* Pagina Carrello */}
+        <Route
+          path="/cart"
+          element={<Cart />}
         />
 
         {/* Pagina Amministrazione (AddCarForm) */}
