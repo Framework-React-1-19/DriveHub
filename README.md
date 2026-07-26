@@ -1,75 +1,52 @@
-# React + TypeScript + Vite
+# DriveHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Progetto realizzato con React, TypeScript, Vite, Material UI e React Router.
 
-Currently, two official plugins are available:
+## Suddivisione dei ruoli
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Alessandro: `AddCarForm.tsx`, `AddCustomCarForm.tsx`, `DriveHub.tsx`, `main.tsx`, `db.json`, `server.js`
+- Matteo: `Catalogo.tsx`, `Navbar.tsx`, `CarCard.tsx`, `UnderlineButton.tsx`, `Footer.tsx`, `types.ts`, `SideBar.tsx`, `README.md`
+- Wassime: `Cart.tsx`, `CartContext.tsx`
+- Dilia: `DetailsCar.tsx`
 
-## React Compiler
+## Installazione
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Clonare il repository:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/Framework-React-1-19/DriveHub.git
+cd DriveHub
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Installare le dipendenze del frontend:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+Installare le dipendenze del backend:
+
+```bash
+cd server
+npm install
+cd ..
+```
+
+## Avvio
+
+Aprire un terminale nella cartella principale del progetto e avviare il backend:
+
+```bash
+cd server
+node server.js
+```
+
+Aprire un secondo terminale nella cartella principale del progetto e avviare il frontend:
+
+```bash
+npm run dev
+```
+
+Il backend sarà disponibile su `http://localhost:5000`.
+
+Il terminale mostrerà l’indirizzo locale al quale aprire il frontend.

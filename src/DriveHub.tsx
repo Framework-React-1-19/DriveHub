@@ -8,6 +8,7 @@ import type { Car, FiltriAuto } from "./types";
 import Catalogo from "./Catalogo"
 import DetailsCar from "./DetailsCar"
 import Cart from "./Cart"
+import Footer from "./Footer"
 
 // Restituisce i valori iniziali usati anche dal pulsante "Resetta Filtri".
 function creaFiltriVuoti(): FiltriAuto {
@@ -131,12 +132,7 @@ function DriveHub() {
         />
       </Routes>
 
-      <Box
-        component="footer"
-        sx={{ mt: 'auto', py: 2, textAlign: 'center', bgcolor: 'primary.main', color: 'white' }}
-      >
-        <Typography variant="body2">© DriveHub</Typography>
-      </Box>
+      <Footer />
     </Box>
   )
 }
