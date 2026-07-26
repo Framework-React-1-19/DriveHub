@@ -13,3 +13,11 @@ export interface CartItem {
   product: Car;
   quantity: number;
 }
+
+export interface FiltriAuto {
+  brand: string;
+  model: string;
+  price: number[];
+  year: number[];
+  fuelTypes: string[];
+}

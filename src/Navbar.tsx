@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Link } from 'react-router-dom'
 import UnderlineButton from './UnderlineButton'
 
@@ -45,9 +46,17 @@ function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
           <>
             <UnderlineButton label="Catalogo" to='/' />
             <UnderlineButton label="Carrello" to='/cart'/>
-            <UnderlineButton label="Amministrazione" to='/admin' />
           </>
         )}
+
+        <IconButton
+          component={Link}
+          to="/admin"
+          color="inherit"
+          aria-label="Amministrazione"
+        >
+          <AccountCircleIcon />
+        </IconButton>
 
         {isMobile && (
           <>
@@ -79,11 +88,6 @@ function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
                     </ListItemButton>
                   </ListItem>
 
-                  <ListItem disablePadding>
-                    <ListItemButton component={Link} to="/admin" onClick={() => setMenuMobile(false)}>
-                      <ListItemText primary="Amministrazione" />
-                    </ListItemButton>
-                  </ListItem>
                 </List>
               </Box>
             </Drawer>
