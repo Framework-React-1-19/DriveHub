@@ -17,27 +17,41 @@ export default function Cart() {
 
   if (items.length === 0) {
     return (
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h6">Il carrello è vuoto</Typography>
+      <Box sx={{ p: 4, textAlign: "center" }}>
+        <Typography variant="h6" color="text.secondary">
+          Il carrello è vuoto
+        </Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 2, maxWidth: 500 }}>
-      <Typography variant="h5" gutterBottom>
-        Carrello
+    <Box
+      sx={{
+        p: 3,
+        maxWidth: 500,
+        mx: "auto",
+        mt: 3,
+        borderRadius: 3,
+        boxShadow: 2,
+        bgcolor: "#fff",
+      }}
+    >
+      <Typography variant="h5" sx={{ fontWeight: 600 }} gutterBottom>
+        🛒 Carrello
       </Typography>
 
       <List>
         {items.map((item) => (
           <ListItem
             key={item.product.id}
+            divider
             secondaryAction={
               <IconButton
                 edge="end"
                 aria-label="rimuovi"
                 onClick={() => removeItem(item.product.id)}
+                color="error"
               >
                 <DeleteIcon />
               </IconButton>
@@ -63,7 +77,9 @@ export default function Cart() {
 
       <Divider sx={{ my: 2 }} />
 
-      <Typography variant="h6">Totale: {total.toFixed(2)} €</Typography>
+      <Typography variant="h6" sx={{ color: "#1976d2" }}>
+        Totale: <strong>{total.toFixed(2)} €</strong>
+      </Typography>
 
       <Button
         variant="outlined"
