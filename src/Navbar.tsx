@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import UnderlineButton from './UnderlineButton'
 
 
@@ -17,6 +17,7 @@ function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [menuMobile, setMenuMobile] = useState(false)
+  const location = useLocation();
 
   return (
     <AppBar position="static">
@@ -26,7 +27,7 @@ function Navbar({ onOpenSidebar }: { onOpenSidebar: () => void }) {
           <DirectionsCarIcon sx={{ fontSize: 32, marginRight: 1 }} />
         )}
 
-        {isMobile && (
+        {isMobile && location.pathname === '/' && (
           <IconButton color="inherit" onClick={onOpenSidebar}>
             <SearchIcon />
           </IconButton>

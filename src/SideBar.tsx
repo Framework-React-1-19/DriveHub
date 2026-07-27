@@ -120,6 +120,7 @@ function Sidebar(props: SidebarProps) {
         </FormControl>
 
         <Typography sx={{ mt: 2 }}>Prezzo (€)</Typography>
+        <Box sx={{ px: 2 }}>
         <Slider
           value={props.filtri.price}
           onChange={cambiaPrezzo}
@@ -129,8 +130,10 @@ function Sidebar(props: SidebarProps) {
           valueLabelDisplay="auto"
           sx={{ mb: 2 }}
         />
+        </Box>
 
         <Typography sx={{ mt: 2 }}>Anno</Typography>
+        <Box sx={{ px: 2 }}>
         <Slider
           value={props.filtri.year}
           onChange={cambiaAnno}
@@ -139,6 +142,7 @@ function Sidebar(props: SidebarProps) {
           valueLabelDisplay="auto"
           sx={{ mb: 2 }}
         />
+        </Box>
 
         <Typography sx={{ mt: 2 }}>Alimentazione</Typography>
         <FormGroup>

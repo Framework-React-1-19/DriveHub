@@ -13,8 +13,10 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import type { Car } from './types';
 
+// Definiamo l'URL del backend in una costante per facilità di gestione
+const BACKEND_URL = 'http://localhost:5000';
+
 interface AddCarFormProps {
-  // Supporta sia funzioni sincrone che asincrone (Promise) da App.tsx
   onAddCar: (nuovaAuto: Car) => Promise<boolean> | void;
 }
 
@@ -28,7 +30,7 @@ function AddCarForm(props: AddCarFormProps) {
       year: new Date().getFullYear(),
       price: 0,
       fuelType: '',
-      imageUrl: '',
+      imageUrl: '', // Questo conterrà l'URL completo (es. http://localhost:5000/auto_X.jpg)
       description: '',
     },
     validate: (values) => {
@@ -52,10 +54,10 @@ function AddCarForm(props: AddCarFormProps) {
 
       if (!values.fuelType) errors.fuelType = 'Seleziona un tipo di alimentazione';
 
-      // Controllo immagine: accetta gli URL locali http://localhost:5000/uploads/...
       if (!values.imageUrl.trim()) {
         errors.imageUrl = "L'immagine dell'auto è obbligatoria";
       } else if (
+        // Rimosso il controllo startWith('/') perché ora salviamo l'URL completo
         !values.imageUrl.startsWith('http://') && 
         !values.imageUrl.startsWith('https://')
       ) {
@@ -73,10 +75,8 @@ function AddCarForm(props: AddCarFormProps) {
     onSubmit: async (values) => {
       console.log('Invio auto al componente padre App.tsx:', values);
       
-      // Chiamiamo la funzione passata via props da App.tsx
       const esito = await props.onAddCar(values);
       
-      // Se l'inserimento ha avuto successo (o se la callback non restituisce booleani)
       if (esito !== false) {
         alert('Auto inserita con successo nel catalogo!');
         formik.resetForm();
@@ -86,32 +86,41 @@ function AddCarForm(props: AddCarFormProps) {
     },
   });
 
-  // 🚀 UPLOAD IMMAGINE VERSO EXPRESS (/upload)
+  // UPLOAD IMMAGINE VERSO EXPRESS (/upload)
   const gestisciUploadImmagine = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setCaricamentoImmagine(true);
 
       const formData = new FormData();
-      formData.append('foto', file); // 'foto' coincide con upload.single('foto') in server.js
+      formData.append('foto', file);
 
       try {
-        const response = await fetch('http://localhost:5000/upload', {
+        // Usiamo la costante BACKEND_URL
+        const response = await fetch(`${BACKEND_URL}/upload`, {
           method: 'POST',
           body: formData,
         });
 
         if (response.ok) {
           const data = await response.json();
-          // Express restituisce http://localhost:5000/uploads/auto_X.jpg
-          formik.setFieldValue('imageUrl', data.imageUrl);
+          // data.imageUrl è "/auto_20.jpg" (restituito da Express)
+          
+          // --- LA CORREZIONE È QUI ---
+          // Uniamo l'URL del backend con il percorso relativo restituito
+          // Risultato: "http://localhost:5000/auto_20.jpg"
+          const urlCompletoImmagine = `${BACKEND_URL}${data.imageUrl}`;
+          
+          formik.setFieldValue('imageUrl', urlCompletoImmagine);
+          // ---------------------------
+          
           formik.setFieldTouched('imageUrl', true, false);
         } else {
           alert("Errore durante il caricamento dell'immagine sul server.");
         }
       } catch (error) {
         console.error("Errore di connessione durante l'upload:", error);
-        alert("Impossibile connettersi al server Express su http://localhost:5000");
+        alert(`Impossibile connettersi al server Express su ${BACKEND_URL}`);
       } finally {
         setCaricamentoImmagine(false);
       }
@@ -201,7 +210,7 @@ function AddCarForm(props: AddCarFormProps) {
             </TextField>
           </Grid>
 
-          {/* UPLOAD FOTO CON ANTEPRIMA ED ECCEZIONI */}
+          {/* UPLOAD FOTO CON ANTEPRIMA */}
           <Grid size={12}>
             <Box
               component="label"
@@ -238,12 +247,12 @@ function AddCarForm(props: AddCarFormProps) {
                 <Box sx={{ textAlign: 'center' }}>
                   <CircularProgress size={40} sx={{ mb: 1 }} />
                   <Typography variant="body2" color="text.secondary">
-                    Salvataggio immagine su server Express...
+                    Salvataggio immagine su cartella public del server...
                   </Typography>
                 </Box>
               ) : formik.values.imageUrl ? (
                 <img
-                  src={formik.values.imageUrl}
+                  src={formik.values.imageUrl} // Ora conterrà l'URL completo, funzionerà l'anteprima
                   alt="Anteprima macchina"
                   style={{
                     width: '100%',
@@ -258,7 +267,7 @@ function AddCarForm(props: AddCarFormProps) {
                     Carica foto auto da esplora file
                   </Typography>
                   <Typography variant="caption" sx={{ display: 'block', color: 'text.disabled' }}>
-                    PNG, JPG o JPEG (Verrà salvata in /uploads come auto_X.jpg)
+                    PNG, JPG, WEBP o JPEG (Verrà salvata sul server backend)
                   </Typography>
                 </Box>
               )}

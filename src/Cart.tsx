@@ -8,7 +8,6 @@ import {
   Divider,
   TextField,
   Box,
-  Paper
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCart } from "./CartContext";
@@ -18,69 +17,84 @@ export default function Cart() {
 
   if (items.length === 0) {
     return (
-      <Box sx={{ p: 4, textAlign: 'center', mt: 4 }}>
-        <Typography variant="h6" color="text.secondary">Il carrello è vuoto</Typography>
+      <Box sx={{ p: 4, textAlign: "center", mt: 4 }}>
+        <Typography variant="h6" color="text.secondary">
+          Il carrello è vuoto
+        </Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 3, maxWidth: 650, mx: 'auto' }}>
-      <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
-        Il Tuo Carrello
+    <Box
+      sx={{
+        p: 3,
+        maxWidth: 500,
+        mx: "auto",
+        mt: 3,
+        borderRadius: 3,
+        boxShadow: 2,
+        bgcolor: "#fff",
+      }}
+    >
+      <Typography variant="h5" sx={{ fontWeight: 600 }} gutterBottom>
+        🛒 Carrello
       </Typography>
 
-      <Paper elevation={2} sx={{ p: 2, borderRadius: 2 }}>
-        <List>
-          {items.map((item) => {
-            const itemId = item.product.id || `${item.product.brand}-${item.product.model}`;
-            return (
-              <ListItem
-                key={itemId}
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="rimuovi"
-                    color="error"
-                    onClick={() => removeItem(itemId)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
+      <List>
+        {items.map((item) => {
+          // 🟢 LOGICA: Mantiene l'ID univoco anche per le auto personalizzate
+          const itemId =
+            item.product.id || `${item.product.brand}-${item.product.model}`;
+
+          return (
+            <ListItem
+              key={itemId}
+              divider
+              secondaryAction={
+                <IconButton
+                  edge="end"
+                  aria-label="rimuovi"
+                  onClick={() => removeItem(itemId)}
+                  color="error"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
+            >
+              <ListItemText
+                primary={`${item.product.brand} ${item.product.model}`}
+                secondary={`${item.product.price.toLocaleString("it-IT")} € x ${item.quantity}`}
+              />
+              <TextField
+                type="number"
+                size="small"
+                value={item.quantity}
+                onChange={(e) =>
+                  updateQuantity(itemId, Number(e.target.value))
                 }
-              >
-                <ListItemText
-                  primary={`${item.product.brand} ${item.product.model}`}
-                  secondary={`${item.product.price.toLocaleString('it-IT')} € x ${item.quantity}`}
-                />
-                <TextField
-                  type="number"
-                  size="small"
-                  value={item.quantity}
-                  onChange={(e) => updateQuantity(itemId, Number(e.target.value))}
-                  sx={{ width: 70, mr: 2 }}
-                  slotProps={{ htmlInput: { min: 1 } }}
-                />
-              </ListItem>
-            );
-          })}
-        </List>
+                sx={{ width: 70, mr: 6 }}
+                slotProps={{ htmlInput: { min: 1 } }}
+              />
+            </ListItem>
+          );
+        })}
+      </List>
 
-        <Divider sx={{ my: 2 }} />
+      <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-            Totale: {total.toLocaleString('it-IT')} €
-          </Typography>
+      <Typography variant="h6" sx={{ color: "#1976d2" }}>
+        Totale: <strong>{total.toLocaleString("it-IT")} €</strong>
+      </Typography>
 
-          <Button
-            variant="outlined"
-            color="error"
-            onClick={clearCart}
-          >
-            Svuota carrello
-          </Button>
-        </Box>
-      </Paper>
+      <Button
+        variant="outlined"
+        color="error"
+        sx={{ mt: 2 }}
+        onClick={clearCart}
+      >
+        Svuota carrello
+      </Button>
     </Box>
   );
 }

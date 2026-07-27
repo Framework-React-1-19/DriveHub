@@ -57,7 +57,8 @@ function Catalogo(props: CatalogoProps) {
             count={totalePagine} 
             page={props.pagina}
             onChange={gestisciCambioPagina} 
-            color="primary" 
+            color="primary"
+            size="small"
           />
         </Box>
       )}
