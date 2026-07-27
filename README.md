@@ -4,8 +4,8 @@ Progetto realizzato con React, TypeScript, Vite, Material UI e React Router.
 
 ## Suddivisione dei ruoli
 
-- Alessandro: `AddCarForm.tsx`, `AddCustomCarForm.tsx`, `DriveHub.tsx`, `main.tsx`, `db.json`, `server.js`, `types.js`
-- Matteo: `Catalogo.tsx`, `Navbar.tsx`, `CarCard.tsx`, `UnderlineButton.tsx`, `Footer.tsx`, `SideBar.tsx`, `README.md`
+- Alessandro: `AddCarForm.tsx`, `AddCustomCarForm.tsx`, `main.tsx`, `db.json`, `server.js`, `types.js`
+- Matteo: `Catalogo.tsx`, `Navbar.tsx`, `CarCard.tsx`,`UnderlineButton.tsx`, `Footer.tsx`, `SideBar.tsx`, `DriveHub.tsx`, `README.md`
 - Wassime: `Cart.tsx`, `CartContext.tsx`
 - Dilia: `DetailsCar.tsx`
 
