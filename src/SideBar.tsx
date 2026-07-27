@@ -10,6 +10,7 @@ import type { Car, FiltriAuto } from './types'
 export const PREZZO_MASSIMO = 5000000
 export const ANNO_MINIMO = 1990
 
+// DATI E FUNZIONI RICEVUTI DA DRIVEHUB
 interface SidebarProps {
   open: boolean;
   setOpen: (value: boolean) => void;
@@ -20,10 +21,11 @@ interface SidebarProps {
 }
 
 function Sidebar(props: SidebarProps) {
+  // CONTROLLO DELLA DIMENSIONE DELLO SCHERMO
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
-  // Costruisce le opzioni dei menu partendo dalle automobili ricevute.
+  // CREAZIONE DEI MENU MARCA E MODELLO
   const marche: string[] = []
   const modelli: string[] = []
 
@@ -43,6 +45,8 @@ function Sidebar(props: SidebarProps) {
   marche.sort()
   modelli.sort()
 
+  // FUNZIONI ESEGUITE QUANDO L'UTENTE MODIFICA I FILTRI
+  //https://mui.com/material-ui/api/slider/
   function cambiaMarca(event: SelectChangeEvent) {
     props.aggiornaFiltri({
       ...props.filtri,
@@ -79,6 +83,7 @@ function Sidebar(props: SidebarProps) {
     props.aggiornaFiltri({ ...props.filtri, fuelTypes: alimentazioniSelezionate })
   }
 
+  // INTERFACCIA GRAFICA
   return (
     <Drawer
       variant={isMobile ? 'temporary' : 'permanent'}
