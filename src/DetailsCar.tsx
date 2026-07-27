@@ -95,7 +95,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
         )}
         <Box
           component= "img"
-          src={autoCorrente.imageUrl}
+          src={autoCorrente.imageUrl.startsWith('/') ? `http://localhost:5000${autoCorrente.imageUrl}` : autoCorrente.imageUrl}
           alt={`${autoCorrente.brand} ${autoCorrente.model}`}
           onLoad={()=> setImageLoaded(true)}
           sx={{display: imageLoaded ? "block" : "none", width : "100%", height: 350, objectFit: "cover"}}

@@ -45,7 +45,17 @@ function DriveHub() {
         body: JSON.stringify(nuovaAuto),
       });
 
-      return response.ok;
+      if (response.ok) {
+        // 1. Recuperiamo l'auto appena creata con il nuovo ID assegnato dal server Express
+        const autoSalvata: Car = await response.json();
+
+        // 2. Aggiorniamo lo stato di React in tempo reale!
+        setAutomobili((prevAutomobili) => [...prevAutomobili, autoSalvata]);
+
+        return true;
+      }
+
+      return false;
     } catch (error) {
       console.error("Errore durante l'invio dell'auto:", error);
       return false;

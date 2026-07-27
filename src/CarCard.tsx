@@ -13,7 +13,7 @@ function CarCard({ car }: CarCardProps) {
       <CardMedia
         component="img"
         height="160"
-        image={car.imageUrl}
+        image={car.imageUrl.startsWith('/') ? `http://localhost:5000${car.imageUrl}` : car.imageUrl}
         alt={`${car.brand} ${car.model}`}
         sx={{ objectFit: 'cover' }}
       />
