@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Box, Typography, Button, Grid } from '@mui/material';
+import { Box, Typography, Button, Paper, Stack } from '@mui/material';
 import Skeleton from "@mui/material/Skeleton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BuildIcon from '@mui/icons-material/Build';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { useRef } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
 
 import type { Car, CartItem } from './types';
 import { AddCustomCarForm } from './AddCustomCarForm';
@@ -18,14 +25,20 @@ function DetailsCar({ cars }: DetailsCarProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   // Scroll in cima all'apertura della pagina
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+  // Refresh carosello
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(0);
+    }
+  }, [id]);
 
  const autoCorrente = cars.find((item) => String(item.id) === String(id));
-
 
   if (!autoCorrente) {
     return (
@@ -74,7 +87,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
   };
 
   return (
-    <Box sx={{ maxWidth: 900, mx: 'auto', p: 3, mt: 2 }}>
+    <Box sx={{ maxWidth: {xs: "100%", sm: 900}, mx: 'auto', p: 3, mt: 2 }}>
 
       <Button 
         startIcon={<ArrowBackIcon />} 
@@ -84,7 +97,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
       </Button>
 
       <Box
-        sx={{ width: "100%", overflow: "hidden", borderRadius: 3, backgroundColor: "#f5f5f5", mb: 3, py: 1.5, fontWeight: 'bold' }}
+        sx={{ width: "100%", overflow: "hidden", borderRadius: 3, backgroundColor: "#fefefe", mb: 3, py: 1.5, fontWeight: 'bold' }}
       >
         {!imageLoaded && (
           <Skeleton
@@ -95,15 +108,19 @@ function DetailsCar({ cars }: DetailsCarProps) {
         )}
         <Box
           component= "img"
-          src={autoCorrente.imageUrl.startsWith('/') ? `http://localhost:5000${autoCorrente.imageUrl}` : autoCorrente.imageUrl}
+          src={autoCorrente.imageUrl}
           alt={`${autoCorrente.brand} ${autoCorrente.model}`}
           onLoad={()=> setImageLoaded(true)}
-          sx={{display: imageLoaded ? "block" : "none", width : "100%", height: 350, objectFit: "cover"}}
+          sx={{display: imageLoaded ? "block" : "none", width : "100%", height: {xs: 250, sm: 550}, objectFit: "cover"}}
           />
       </Box>
 
         <Typography variant="h3" sx={{fontWeight: "bold", mb: 1}}>
           {autoCorrente.brand} {autoCorrente.model}
+        </Typography>
+
+        <Typography variant="h4" sx={{fontWeight: "lighter", mb: 0.3}}>
+          {autoCorrente.year}
         </Typography>
 
         <Typography
@@ -122,19 +139,20 @@ function DetailsCar({ cars }: DetailsCarProps) {
           {autoCorrente.description}
         </Typography>
 
-        <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <Button
+        <Stack
+          direction={{xs: "column", sm: "row"}}
+          justifyContent="space-between"
+          spacing={2}
+        >
+          <Button
               variant="outlined"
               size= "large"
               fullWidth
               startIcon={<ShoppingCartIcon/>}
               onClick={()=> aggiungiAlCarrello(autoCorrente)}
               sx={{py: 1.5, fontWeight: "bold"}}
-            >Aggiungi al carello</Button>
-        </Grid>
+          >Aggiungi al carello</Button>
 
-        <Grid size={{ xs: 12, sm: 6 }}>
           <Button
             variant= "contained"
             size= "large"
@@ -143,8 +161,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
             onClick={()=> setIsModalOpen(true)}
             sx={{py: 1.5, fontWeight: "bold"}}
           >Personalizza veicolo</Button>
-          </Grid>
-        </Grid>
+        </Stack>
 
         <AddCustomCarForm
           open={isModalOpen}
@@ -157,6 +174,52 @@ function DetailsCar({ cars }: DetailsCarProps) {
             })
           }
         />
+
+        <Typography variant="h5" sx={{mt: 5, mb: 2, fontWeight: "bold"}}>
+          Potrebbero interessarti anche:
+        </Typography>
+
+        <Swiper
+        onSwiper={(swiper)=> (swiperRef.current=swiper)}
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            600: {slidesPerView:2},
+            900: {slidesPerView:3},
+            1200: {slidesPerView:4}
+          }}
+          style={{paddingBottom:"45px"}}
+        >
+          {cars
+            .filter((c)=>c.id!==autoCorrente.id)
+            .slice(0,10)
+            .map((auto)=>(
+                <SwiperSlide key={auto.id}>
+                  <Paper
+                    elevation={3}
+                    sx={{p:1.5, borderRadius:2, cursor: "pointer", transition: "0.2s", height: 260, display: "flex", flexDirection: "column", justifyContent: "space-between", "&:hover":{transform: "scale(1.03)"}}}
+                    onClick={()=>navigate(`/car/${auto.id}`)}
+                  >
+                  <Box
+                    component="img"
+                    src={auto.imageUrl}
+                    alt={auto.model}
+                    sx={{width:"100%", height:140, objectFit:"cover", borderRadius: 2, mb:1}}
+                  />
+
+                  <Typography variant="subtitle1" sx={{mt: 2, mb: 2, fontWeight: "bold", minHeight: 40}}>
+                    {auto.brand} {auto.model}
+                  </Typography>
+
+                  <Typography variant="body2" color="text.secondary">
+                    € {auto.price.toLocaleString("it-IT")}
+                  </Typography>
+                  </Paper>
+                </SwiperSlide>
+            ))}
+        </Swiper>
         </Box>
   );
 }
