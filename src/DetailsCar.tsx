@@ -140,29 +140,46 @@ function DetailsCar({ cars }: DetailsCarProps) {
         </Typography>
 
         <Stack
-          sx={{
-            flexDirection: { xs: 'column', sm: 'row' },
-            justifyContent: 'space-between',
-          }}
-          spacing={2}
-        >
-          <Button
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{
+              mb: 4,
+              alignItems: 'stretch',
+            }}
+          >
+            <Button
               variant="outlined"
-              size= "large"
+              size="large"
               fullWidth
-              startIcon={<ShoppingCartIcon/>}
-              onClick={()=> aggiungiAlCarrello(autoCorrente)}
-              sx={{py: 1.5, fontWeight: "bold"}}
-          >Aggiungi al carello</Button>
+              startIcon={<ShoppingCartIcon />}
+              onClick={() => aggiungiAlCarrello(autoCorrente)}
+              sx={{
+                flex: 1,
+                py: 1.5,
+                fontWeight: 'bold',
+                minHeight: 50,
+                boxSizing: 'border-box',
+              }}
+            >
+              Aggiungi al carrello
+            </Button>
 
-          <Button
-            variant= "contained"
-            size= "large"
-            fullWidth
-            startIcon={<BuildIcon/>}
-            onClick={()=> setIsModalOpen(true)}
-            sx={{py: 1.5, fontWeight: "bold"}}
-          >Personalizza veicolo</Button>
+            <Button
+              variant="contained"
+              size="large"
+              fullWidth
+              startIcon={<BuildIcon />}
+              onClick={() => setIsModalOpen(true)}
+              sx={{
+                flex: 1,
+                py: 1.5,
+                fontWeight: 'bold',
+                minHeight: 50,
+                boxSizing: 'border-box',
+              }}
+            >
+              Personalizza veicolo
+            </Button>
         </Stack>
 
         <AddCustomCarForm
@@ -206,7 +223,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
                   >
                   <Box
                     component="img"
-                    src={autoCorrente.imageUrl.startsWith('/') ? `http://localhost:5000${autoCorrente.imageUrl}` : autoCorrente.imageUrl}
+                    src={auto.imageUrl.startsWith('/') ? `http://localhost:5000${auto.imageUrl}` : auto.imageUrl}
                     alt={auto.model}
                     sx={{width:"100%", height:140, objectFit:"cover", borderRadius: 2, mb:1}}
                   />
