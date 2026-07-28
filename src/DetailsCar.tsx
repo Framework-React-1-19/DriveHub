@@ -108,7 +108,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
         )}
         <Box
           component= "img"
-          src={autoCorrente.imageUrl}
+          src={autoCorrente.imageUrl.startsWith('/') ? `http://localhost:5000${autoCorrente.imageUrl}` : autoCorrente.imageUrl}
           alt={`${autoCorrente.brand} ${autoCorrente.model}`}
           onLoad={()=> setImageLoaded(true)}
           sx={{display: imageLoaded ? "block" : "none", width : "100%", height: {xs: 250, sm: 550}, objectFit: "cover"}}
@@ -140,8 +140,10 @@ function DetailsCar({ cars }: DetailsCarProps) {
         </Typography>
 
         <Stack
-          direction={{xs: "column", sm: "row"}}
-          justifyContent="space-between"
+          sx={{
+            flexDirection: { xs: 'column', sm: 'row' },
+            justifyContent: 'space-between',
+          }}
           spacing={2}
         >
           <Button
@@ -204,7 +206,7 @@ function DetailsCar({ cars }: DetailsCarProps) {
                   >
                   <Box
                     component="img"
-                    src={auto.imageUrl}
+                    src={autoCorrente.imageUrl.startsWith('/') ? `http://localhost:5000${autoCorrente.imageUrl}` : autoCorrente.imageUrl}
                     alt={auto.model}
                     sx={{width:"100%", height:140, objectFit:"cover", borderRadius: 2, mb:1}}
                   />
